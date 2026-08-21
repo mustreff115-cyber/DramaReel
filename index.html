@@ -142,9 +142,9 @@
         const rawSegments = data.Episode[epKey] || [];
         const epFolder = String(epNumber).padStart(3, '0');
 
-        // توليد المسار بناءً على الهيكل الصحيح لديك
+        // استخدام الروابط المباشرة من GitHub Raw لتجاوز أخطاء 404 ومشغل الفيديو
         activeSegments = rawSegments.map(segmentName => {
-            return `./${data.Serie}/Ep/${epFolder}/${segmentName}`;
+            return `https://raw.githubusercontent.com/mustreff115-cyber/DramaReel/main/${data.Serie}/Ep/${epFolder}/${segmentName}`;
         });
 
         currentSegmentIndex = 0;
@@ -174,7 +174,6 @@
                 debugErrorElem.innerText = "Notice: Autoplay prevented by browser. Click play manually.";
             });
             
-            // الانتقال التلقائي للجزء التالي عند انتهاء الجزء الحالي
             videoElem.onended = () => {
                 currentSegmentIndex++;
                 playCurrentSegment();
@@ -182,7 +181,6 @@
         }
     }
 
-    // رصد الأخطاء في حال عدم وجود الملف أو خطأ في المسار
     videoElem.onerror = () => {
         const err = videoElem.error;
         let errMsg = "Unknown error";
