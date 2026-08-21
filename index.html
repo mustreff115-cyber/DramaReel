@@ -94,7 +94,7 @@
     </div>
 </div>
 
-<!-- استدعاء ملف datadrama.js الخارجي -->
+<!-- تحميل بيانات الحلقات من الملف الخارجي -->
 <script src="datadrama.js"></script>
 <script>
     const currentSeriesId = 34567; 
@@ -139,12 +139,9 @@
 
     function loadEpisode(data, epNumber) {
         const epKey = `Ep${epNumber}_Seg`;
-        const rawSegments = data.Episode[epKey] || [];
-        const epFolder = String(epNumber).padStart(3, '0');
-
-        activeSegments = rawSegments.map(segmentName => {
-            return `./${data.Serie}/Ep/${epFolder}/${segmentName}`;
-        });
+        
+        // جلب الروابط مباشرة من ملف datadrama.js دون دمج أو تعديل مسارات
+        activeSegments = data.Episode[epKey] || [];
 
         currentSegmentIndex = 0;
         debugErrorElem.innerText = "";
