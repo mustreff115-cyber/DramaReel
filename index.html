@@ -94,6 +94,7 @@
     </div>
 </div>
 
+<!-- استدعاء ملف datadrama.js الخارجي -->
 <script src="datadrama.js"></script>
 <script>
     const currentSeriesId = 34567; 
@@ -141,7 +142,6 @@
         const rawSegments = data.Episode[epKey] || [];
         const epFolder = String(epNumber).padStart(3, '0');
 
-        // المسار النسبي المباشر بناءً على بنية المجلدات لديك
         activeSegments = rawSegments.map(segmentName => {
             return `./${data.Serie}/Ep/${epFolder}/${segmentName}`;
         });
