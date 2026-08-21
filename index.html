@@ -94,7 +94,6 @@
     </div>
 </div>
 
-<!-- Load Data from datadrama.js -->
 <script src="datadrama.js"></script>
 <script>
     const currentSeriesId = 34567; 
@@ -142,9 +141,9 @@
         const rawSegments = data.Episode[epKey] || [];
         const epFolder = String(epNumber).padStart(3, '0');
 
-        // استخدام الروابط المباشرة من GitHub Raw لتجاوز أخطاء 404 ومشغل الفيديو
+        // المسار النسبي المباشر بناءً على بنية المجلدات لديك
         activeSegments = rawSegments.map(segmentName => {
-            return `https://raw.githubusercontent.com/mustreff115-cyber/DramaReel/main/${data.Serie}/Ep/${epFolder}/${segmentName}`;
+            return `./${data.Serie}/Ep/${epFolder}/${segmentName}`;
         });
 
         currentSegmentIndex = 0;
